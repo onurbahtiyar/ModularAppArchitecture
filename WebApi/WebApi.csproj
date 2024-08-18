@@ -1,0 +1,80 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>411895c5-07d9-45d6-9002-e8188f12f344</UserSecretsId>
+    <Configurations>Debug;Release;Developer;LIVE</Configurations>
+    <PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Connected Services\**" />
+    <Content Remove="Connected Services\**" />
+    <EmbeddedResource Remove="Connected Services\**" />
+    <None Remove="Connected Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNetCoreRateLimit" Version="5.0.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="9.0.0" /> 
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" /> 
+    <PackageReference Include="DocumentFormat.OpenXml" Version="3.1.0" /> 
+    <PackageReference Include="DocX" Version="3.0.1" /> 
+    <PackageReference Include="EPPlus" Version="7.2.2" /> 
+    <PackageReference Include="Hangfire" Version="1.8.14" /> 
+    <PackageReference Include="Hangfire.SqlServer" Version="1.8.14" /> 
+    <PackageReference Include="Lib.AspNetCore.WebPush" Version="2.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.IdentityModel.Protocols" Version="8.0.1" />
+    <PackageReference Include="prometheus-net" Version="8.2.1" />
+	<PackageReference Include="RestSharp" Version="111.4.1" />
+	<PackageReference Include="Serilog" Version="4.0.1" />
+	<PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
+	<PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
+	<PackageReference Include="StackExchange.Redis" Version="2.8.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.1" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
+    <PackageReference Include="System.Diagnostics.Debug" Version="4.3.0" />
+    <PackageReference Include="System.DirectoryServices.AccountManagement" Version="8.0.0" />
+	<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.1" />
+	<PackageReference Include="System.IO" Version="4.3.0" />
+	<PackageReference Include="System.IO.FileSystem" Version="4.3.0" />
+	<PackageReference Include="System.IO.FileSystem.Primitives" Version="4.3.0" />
+	<PackageReference Include="System.Runtime.Extensions" Version="4.3.1" />
+	<PackageReference Include="System.Runtime.Handles" Version="4.3.0" />
+	<PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
+	<PackageReference Include="System.ServiceModel.Duplex" Version="6.0.*" />
+	<PackageReference Include="System.ServiceModel.Federation" Version="8.0.0" />
+	<PackageReference Include="System.ServiceModel.Http" Version="8.0.0" />
+	<PackageReference Include="System.ServiceModel.NetTcp" Version="8.0.0" />
+	<PackageReference Include="System.ServiceModel.Security" Version="6.0.*" />
+	<PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
+	<PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="8.0.1" />
+	<PackageReference Include="WebPush" Version="1.0.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Business\Business.csproj" />
+    <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+    <ProjectReference Include="..\Enigma\Enigma.csproj" />
+    <ProjectReference Include="..\Entities\Entities.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\Jobs\Jobs.csproj" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="logs\" />
+  </ItemGroup>
+
+</Project>
