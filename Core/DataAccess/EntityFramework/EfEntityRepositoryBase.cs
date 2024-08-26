@@ -29,16 +29,34 @@ public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEnti
         context.SaveChanges();
     }
 
-    public TEntity Get(Expression<Func<TEntity, bool>> filter = null)
+    public TEntity Get(Expression<Func<TEntity, bool>> filter = null, params Expression<Func<TEntity, object>>[] includeProperties)
     {
-        return context.Set<TEntity>().SingleOrDefault(filter);
+        IQueryable<TEntity> query = context.Set<TEntity>();
+
+        if (includeProperties != null)
+        {
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+        }
+
+        return query.FirstOrDefault(filter);
     }
 
-    public List<TEntity> GetList(Expression<Func<TEntity, bool>> filter = null)
+    public List<TEntity> GetList(Expression<Func<TEntity, bool>> filter = null, params Expression<Func<TEntity, object>>[] includeProperties)
     {
-        return filter == null
-            ? context.Set<TEntity>().ToList()
-            : context.Set<TEntity>().Where(filter).ToList();
+        IQueryable<TEntity> query = context.Set<TEntity>();
+
+        if (includeProperties != null)
+        {
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+        }
+
+        return filter == null ? query.ToList() : query.Where(filter).ToList();
     }
 
     public void Update(TEntity entitiy)

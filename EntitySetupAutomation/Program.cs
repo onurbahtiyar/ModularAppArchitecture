@@ -105,7 +105,7 @@ public class EntitySetupAutomation
 
         string dalInterfaceCode = $@"
 using Core.DataAccess;
-using Entities.Concrete;
+using Entities.Concrete.EntityFramework.Entities;
 
 namespace DataAccess.Abstract;
 public interface I{entityName}Dal: IEntityRepository<{entityName}>
@@ -117,8 +117,8 @@ public interface I{entityName}Dal: IEntityRepository<{entityName}>
         string dalConcreteCode = $@"
 using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
-using DataAccess.Concrete.EntityFramework.Context;
-using Entities.Concrete;
+using Entities.Concrete.EntityFramework.Context;
+using Entities.Concrete.EntityFramework.Entities;
 
 namespace DataAccess.Concrete.EntityFramework;
 public class Ef{entityName}Dal: EfEntityRepositoryBase<{entityName}, {dbContextClassName}>, I{entityName}Dal
