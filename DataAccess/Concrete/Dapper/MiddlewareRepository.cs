@@ -17,8 +17,8 @@ public class MiddlewareRepository
     {
         try
         {
-            var sql = @"INSERT INTO UserActivityLog (IPAddress, BrowserInfo, ActivityDate, ActivityType, ActivityDetail, UserId, AdditionalData, ActivityPage)
-                                VALUES (@IPAddress, @BrowserInfo, @ActivityDate, @ActivityType, @ActivityDetail, @UserId, @AdditionalData, @ActivityPage)";
+            var sql = @"INSERT INTO UserActivityLog (IPAddress, BrowserInfo, ActivityDate, ActivityType, ActivityDetail, UserGuid, AdditionalData, ActivityPage)
+                                VALUES (@IPAddress, @BrowserInfo, @ActivityDate, @ActivityType, @ActivityDetail, @UserGuid, @AdditionalData, @ActivityPage)";
             await _connection.ExecuteAsync(sql, userActivityLog);
         }
         catch (Exception ex)
