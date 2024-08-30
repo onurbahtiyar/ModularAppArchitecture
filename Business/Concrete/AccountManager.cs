@@ -39,7 +39,10 @@ public class AccountManager : IAccountService
                 loginDto.Password = processor.EncryptorSymmetric(loginDto.Password, aes);
             }
 
-            var user = userDal.Get(x => (x.Username == loginDto.Username || x.Email == loginDto.Username) && x.Password == loginDto.Password);
+            var user = userDal.Get(
+                    x => (x.Username == loginDto.Username || x.Email == loginDto.Username) && x.Password == loginDto.Password,
+                    u => u.UserRoles
+                );
             if (user == null)
             {
                 return new ErrorDataResult<AccessToken>(data: null, SystemMessages.InvalidCredentials);
@@ -109,6 +112,11 @@ public class AccountManager : IAccountService
             };
 
             userRoleDal.Add(userRole);
+
+            user = userDal.Get(
+                x => x.Email == registerDto.Email,
+                u => user.UserRoles
+            );
 
             var token = tokenHelper.CreateToken(new TokenUser
             {
